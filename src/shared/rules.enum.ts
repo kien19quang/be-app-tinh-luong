@@ -27,3 +27,12 @@ export enum RulesLevelOfDifficultSubjectValue {
   difficult = 1.2,
   advanced = 1.3,
 }
+
+export const handleClassCoefficient = (studentNumber: number) => {
+  if (studentNumber < 20) {
+    return -0.5;
+  } else if (studentNumber > 40) {
+    return 0.2;
+  }
+  return 0;
+};

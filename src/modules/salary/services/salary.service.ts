@@ -4,6 +4,7 @@ import { SalaryDto, StandardSalaryDto } from '../dto/salary.dto';
 import {
   RulesLevelOfDifficultSubjectValue,
   RulesQualificationsValue,
+  handleClassCoefficient,
 } from 'src/shared/rules.enum';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -20,6 +21,10 @@ export class SalaryService {
   async getSalary() {
     const listTeacher = await this.teacherService.getAllTeacher();
     const listSalaryTeachers: SalaryDto[] = [];
+    const dataStandardSalary = await this.getStandardSalary();
+    const standardSalary = dataStandardSalary
+      ? dataStandardSalary.standardSalary
+      : 100000;
     for (let i = 0; i < listTeacher.length; i++) {
       const teacher = await listTeacher[i].populate({
         path: 'Classes',
@@ -38,10 +43,11 @@ export class SalaryService {
         const subjectCoefficient: number = RulesLevelOfDifficultSubjectValue[
           cur.Subject.levelOfDifficult
         ] as any;
+        const classCoefficient = handleClassCoefficient(cur.studentNumber);
         const salary =
           cur.lession *
-          (teacherCoefficient + subjectCoefficient + 0.3) *
-          100000;
+          (teacherCoefficient + subjectCoefficient + classCoefficient) *
+          standardSalary;
         return acc + salary;
       }, 0);
       const salaryTeacher = {
@@ -54,7 +60,7 @@ export class SalaryService {
         degree: teacher.degree,
         listSubject: listSubject,
         classAndLession: classAndLession,
-        standardSalary: 100000,
+        standardSalary: standardSalary,
         salary: sumSalary,
       } as any;
       listSalaryTeachers.push(salaryTeacher);
