@@ -61,7 +61,7 @@ export class SalaryService {
         listSubject: listSubject,
         classAndLession: classAndLession,
         standardSalary: standardSalary,
-        salary: sumSalary,
+        salary: sumSalary?.toFixed(),
       } as any;
       listSalaryTeachers.push(salaryTeacher);
     }
