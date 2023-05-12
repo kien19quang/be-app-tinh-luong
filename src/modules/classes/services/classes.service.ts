@@ -18,7 +18,7 @@ export class ClassesService {
     for (let i = 0; i < response.length; i++) {
       await response[i].populate({
         path: 'Subject',
-        select: '_id name subjectCode',
+        select: '_id name subjectCode lession',
       });
       await response[i].populate({ path: 'Teacher', select: '_id name ' });
     }
@@ -47,7 +47,7 @@ export class ClassesService {
     const newClass = await createdClass.save();
     await newClass.populate({
       path: 'Subject',
-      select: '_id name subjectCode',
+      select: '_id name subjectCode lession',
     });
     await newClass.populate({ path: 'Teacher', select: '_id name' });
     return newClass;
@@ -83,7 +83,7 @@ export class ClassesService {
 
     await response.populate({
       path: 'Subject',
-      select: '_id name subjectCode',
+      select: '_id name subjectCode lession',
     });
     await response.populate({ path: 'Teacher', select: '_id name' });
     return response;

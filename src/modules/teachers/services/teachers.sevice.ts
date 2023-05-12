@@ -34,7 +34,7 @@ export class TeachersService {
       .exec();
     const stt = lastStudent ? lastStudent.stt + 1 : 1;
     const teacherCode = `G${stt}`;
-    data = { ...data, teacherCode: teacherCode };
+    data = { ...data, teacherCode: teacherCode, stt: stt };
     const createdTeacher = new this.teachersModel(data);
     return createdTeacher.save();
   }

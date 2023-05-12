@@ -19,9 +19,5 @@ export class ClassDto {
 
   @IsNotEmpty()
   @ApiProperty()
-  lession: number;
-
-  @IsNotEmpty()
-  @ApiProperty()
   studentNumber: number;
 }

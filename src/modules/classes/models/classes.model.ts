@@ -5,7 +5,6 @@ const ClassesSchema = new Schema(
     name: { type: String, required: true },
     Subject: { type: Schema.Types.ObjectId, ref: 'Subjects', required: true },
     Teacher: { type: Schema.Types.ObjectId, ref: 'Teachers', required: true },
-    lession: { type: Number, required: true },
     studentNumber: { type: Number, required: true },
   },
   { timestamps: true, collection: 'Classes' },
@@ -18,6 +17,5 @@ export interface Classes extends Document {
   name: string;
   Subject: string;
   Teacher: string;
-  lession: number;
   studentNumber: number;
 }

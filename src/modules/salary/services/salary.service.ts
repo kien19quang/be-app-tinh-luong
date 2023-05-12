@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { TeachersService } from 'src/modules/teachers/services/teachers.sevice';
 import { SalaryDto, StandardSalaryDto } from '../dto/salary.dto';
 import {
-  RulesLevelOfDifficultSubjectValue,
   RulesQualificationsValue,
   handleClassCoefficient,
 } from 'src/shared/rules.enum';
@@ -35,18 +34,17 @@ export class SalaryService {
       );
       const classAndLession = teacher?.Classes.map((item: any) => ({
         class: item.name,
-        lession: item.lession,
+        lession: item?.Subject?.lession || '',
       }));
       const sumSalary = teacher?.Classes.reduce((acc: number, cur: any) => {
         const teacherCoefficient: number =
           RulesQualificationsValue[teacher.degree];
-        const subjectCoefficient: number = RulesLevelOfDifficultSubjectValue[
-          cur.Subject.levelOfDifficult
-        ] as any;
         const classCoefficient = handleClassCoefficient(cur.studentNumber);
         const salary =
-          cur.lession *
-          (teacherCoefficient + subjectCoefficient + classCoefficient) *
+          cur.Subject.lession *
+          (teacherCoefficient +
+            cur.Subject.subjectCoefficients +
+            classCoefficient) *
           standardSalary;
         return acc + salary;
       }, 0);

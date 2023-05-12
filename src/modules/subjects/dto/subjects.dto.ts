@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEnum, IsNotEmpty } from 'class-validator';
-import { RulesLevelOfDifficultSubject } from 'src/shared/rules.enum';
+import { IsNotEmpty } from 'class-validator';
 
 export class SubjectDto {
   @ApiProperty()
@@ -15,7 +14,10 @@ export class SubjectDto {
   name: string;
 
   @IsNotEmpty()
-  @ApiProperty({ enum: RulesLevelOfDifficultSubject })
-  @IsEnum(RulesLevelOfDifficultSubject)
-  levelOfDifficult: string;
+  @ApiProperty()
+  subjectCoefficients: number;
+
+  @IsNotEmpty()
+  @ApiProperty()
+  lession: number;
 }

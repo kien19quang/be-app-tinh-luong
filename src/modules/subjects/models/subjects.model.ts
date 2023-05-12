@@ -1,13 +1,13 @@
 import { Schema, Document } from 'mongoose';
-import { RulesLevelOfDifficultSubject } from 'src/shared/rules.enum';
 
 const SubjectsSchema = new Schema(
   {
     subjectCode: { type: String, required: true, unique: true },
     name: { type: String, required: true },
-    levelOfDifficult: {
-      type: String,
-      enum: ['easy', 'normal', 'difficult', 'advanced'],
+    lession: { type: Number, required: true },
+    subjectCoefficients: {
+      type: Number,
+      enum: [1, 1.1, 1.3, 1.4],
       required: true,
     },
   },
@@ -19,5 +19,6 @@ export { SubjectsSchema };
 export interface Subjects extends Document {
   subjectCode: string;
   name: string;
-  levelOfDifficult: RulesLevelOfDifficultSubject;
+  lession: number;
+  subjectCoefficients: number;
 }
