@@ -4,7 +4,7 @@ import { RulesQualifications } from 'src/shared/rules.enum';
 const TeachersSchema = new Schema(
   {
     stt: { type: Number, default: 1 },
-    teacherCode: { type: String, unique: true },
+    teacherCode: { type: String },
     name: { type: String, required: true },
     address: { type: String, required: true },
     phoneNumber: { type: String, required: true },
