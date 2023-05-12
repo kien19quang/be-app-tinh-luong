@@ -25,6 +25,10 @@ export class TeacherDto {
 
   @IsNotEmpty()
   @ApiProperty()
+  email: string;
+
+  @IsNotEmpty()
+  @ApiProperty()
   dob: Date;
 
   @IsNotEmpty()
