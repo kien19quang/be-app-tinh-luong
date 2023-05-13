@@ -10,7 +10,7 @@ const TeachersSchema = new Schema(
     phoneNumber: { type: String, required: true },
     email: { type: String, required: true },
     dob: { type: Date, required: true },
-    cmnd: { type: String, required: true, unique: true },
+    cmnd: { type: String, unique: true },
     degree: {
       type: String,
       enum: ['graduate', 'master', 'docter', 'associateProfessor', 'professor'],

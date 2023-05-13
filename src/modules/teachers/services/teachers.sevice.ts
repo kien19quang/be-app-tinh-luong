@@ -33,7 +33,7 @@ export class TeachersService {
       .sort({ stt: -1 })
       .exec();
     const stt = lastStudent ? lastStudent.stt + 1 : 1;
-    const teacherCode = `G${stt}`;
+    const teacherCode = `CTI${stt}`;
     data = { ...data, teacherCode: teacherCode, stt: stt };
     const createdTeacher = new this.teachersModel(data);
     return createdTeacher.save();

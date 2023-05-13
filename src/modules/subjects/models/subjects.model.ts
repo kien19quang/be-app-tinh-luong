@@ -7,7 +7,7 @@ const SubjectsSchema = new Schema(
     lession: { type: Number, required: true },
     subjectCoefficients: {
       type: Number,
-      enum: [1, 1.1, 1.3, 1.4],
+      enum: [1, 1.1, 1.2, 1.3],
       required: true,
     },
   },
