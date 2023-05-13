@@ -1,10 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { TeachersService } from 'src/modules/teachers/services/teachers.sevice';
 import { SalaryDto, StandardSalaryDto } from '../dto/salary.dto';
-import {
-  RulesQualificationsValue,
-  handleClassCoefficient,
-} from 'src/shared/rules.enum';
+import { handleClassCoefficient } from 'src/shared/rules.enum';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { StandardSalary } from '../models/standardSalary.model';
@@ -24,6 +21,7 @@ export class SalaryService {
     const standardSalary = dataStandardSalary
       ? dataStandardSalary.standardSalary
       : 100000;
+    const rulesQualifications = dataStandardSalary.teacherCoefficient;
     for (let i = 0; i < listTeacher.length; i++) {
       const teacher = await listTeacher[i].populate({
         path: 'Classes',
@@ -37,8 +35,7 @@ export class SalaryService {
         lession: item?.Subject?.lession || '',
       }));
       const sumSalary = teacher?.Classes.reduce((acc: number, cur: any) => {
-        const teacherCoefficient: number =
-          RulesQualificationsValue[teacher.degree];
+        const teacherCoefficient: number = rulesQualifications[teacher.degree];
         const classCoefficient = handleClassCoefficient(cur.studentNumber);
         const salary =
           cur.Subject.lession *

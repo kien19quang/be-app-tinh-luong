@@ -26,6 +26,13 @@ export class SalaryController {
     if (!response) {
       response = await this.salaryService.createStandardSalary({
         standardSalary: 100000,
+        teacherCoefficient: {
+          graduate: 1.3,
+          master: 1.4,
+          docter: 1.5,
+          associateProfessor: 1.6,
+          professor: 1.7,
+        },
       });
     }
     return {

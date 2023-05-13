@@ -48,8 +48,32 @@ export class SalaryDto {
   salary: number;
 }
 
+export class TeacherCoefficient {
+  @ApiProperty()
+  @IsNotEmpty()
+  graduate: number;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  master: number;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  docter: number;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  associateProfessor: number;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  professor: number;
+}
 export class StandardSalaryDto {
   @IsNotEmpty()
   @ApiProperty({ default: 100000, type: Number })
   standardSalary: number;
+
+  @ApiProperty()
+  teacherCoefficient: TeacherCoefficient;
 }
