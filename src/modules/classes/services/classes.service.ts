@@ -16,10 +16,7 @@ export class ClassesService {
   async getAllClass() {
     const response = await this.classesModel.find();
     for (let i = 0; i < response.length; i++) {
-      await response[i].populate({
-        path: 'Subject',
-        select: '_id name subjectCode lession',
-      });
+      await response[i].populate('Subject');
       await response[i].populate({ path: 'Teacher', select: '_id name ' });
     }
     return response;
@@ -45,10 +42,7 @@ export class ClassesService {
     teacher.Classes.push(createdClass._id);
     await teacher.save();
     const newClass = await createdClass.save();
-    await newClass.populate({
-      path: 'Subject',
-      select: '_id name subjectCode lession',
-    });
+    await newClass.populate('Subject');
     await newClass.populate({ path: 'Teacher', select: '_id name' });
     return newClass;
   }
@@ -81,10 +75,7 @@ export class ClassesService {
       await newTeacher.save();
     }
 
-    await response.populate({
-      path: 'Subject',
-      select: '_id name subjectCode lession',
-    });
+    await response.populate('Subject');
     await response.populate({ path: 'Teacher', select: '_id name' });
     return response;
   }
