@@ -8,6 +8,9 @@ export class ClassAndLession {
 
   @ApiProperty()
   lession: string;
+
+  @ApiProperty()
+  salary?: number;
 }
 
 export class SalaryDto {
