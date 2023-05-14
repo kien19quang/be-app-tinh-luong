@@ -39,7 +39,9 @@ export class ClassesService {
     const teacher = await this.teacherSevice.getOneTeacher({
       _id: createdClass.Teacher,
     });
-    teacher.Classes.push(createdClass._id);
+    if (teacher) {
+      teacher.Classes.push(createdClass._id);
+    }
     await teacher.save();
     const newClass = await createdClass.save();
     await newClass.populate('Subject');
