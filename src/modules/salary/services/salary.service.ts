@@ -27,9 +27,12 @@ export class SalaryService {
         path: 'Classes',
         populate: { path: 'Subject' },
       });
-      const listSubject = teacher?.Classes.map(
-        (item) => (item as any)?.Subject?.name,
-      );
+      const listSubject = [];
+      teacher?.Classes.forEach((item: any) => {
+        if (item?.Subject?.name) {
+          listSubject.push(item?.Subject.name);
+        }
+      });
       const classAndLession = [];
       const sumSalary = teacher?.Classes.reduce((acc: number, cur: any) => {
         const teacherCoefficient: number = rulesQualifications[teacher.degree];
