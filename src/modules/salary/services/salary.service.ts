@@ -30,7 +30,7 @@ export class SalaryService {
       const listSubject = [];
       teacher?.Classes.forEach((item: any) => {
         if (item?.Subject?.name) {
-          listSubject.push(item?.Subject.name);
+          listSubject.push(item.Subject.name);
         }
       });
       const classAndLession = [];
