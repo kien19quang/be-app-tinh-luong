@@ -34,8 +34,9 @@ export class SalaryService {
       const sumSalary = teacher?.Classes.reduce((acc: number, cur: any) => {
         const teacherCoefficient: number = rulesQualifications[teacher.degree];
         const classCoefficient = handleClassCoefficient(cur.studentNumber);
+        const lession = cur?.Subject?.lession || 0;
         const salary =
-          cur.Subject.lession *
+          lession *
           (teacherCoefficient +
             cur.Subject.subjectCoefficients +
             classCoefficient) *
