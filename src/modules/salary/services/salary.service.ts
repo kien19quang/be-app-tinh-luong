@@ -35,7 +35,7 @@ export class SalaryService {
         const teacherCoefficient: number = rulesQualifications[teacher.degree];
         const classCoefficient = handleClassCoefficient(cur.studentNumber);
         const lession = cur?.Subject?.lession || 0;
-        const subjectCoefficients = cur?.Subject.subjectCoefficients || 1;
+        const subjectCoefficients = cur?.Subject?.subjectCoefficients || 1;
         const salary =
           lession *
           (teacherCoefficient + subjectCoefficients + classCoefficient) *
