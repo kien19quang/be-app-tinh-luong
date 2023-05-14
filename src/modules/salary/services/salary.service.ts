@@ -31,26 +31,22 @@ export class SalaryService {
         (item) => (item as any).Subject.name,
       );
       const classAndLession = [];
-      const sumSalary = teacher?.Classes.reduce(
-        (acc: number, cur: any, currentIndex: number) => {
-          const teacherCoefficient: number =
-            rulesQualifications[teacher.degree];
-          const classCoefficient = handleClassCoefficient(cur.studentNumber);
-          const salary =
-            cur.Subject.lession *
-            (teacherCoefficient +
-              cur.Subject.subjectCoefficients +
-              classCoefficient) *
-            standardSalary;
-          classAndLession.push({
-            class: cur.name,
-            lession: cur?.Subject?.lession || '',
-            salary: salary,
-          });
-          return acc + salary;
-        },
-        0,
-      );
+      const sumSalary = teacher?.Classes.reduce((acc: number, cur: any) => {
+        const teacherCoefficient: number = rulesQualifications[teacher.degree];
+        const classCoefficient = handleClassCoefficient(cur.studentNumber);
+        const salary =
+          cur.Subject.lession *
+          (teacherCoefficient +
+            cur.Subject.subjectCoefficients +
+            classCoefficient) *
+          standardSalary;
+        classAndLession.push({
+          class: cur.name,
+          lession: cur?.Subject?.lession || '',
+          salary: salary,
+        });
+        return acc + salary;
+      }, 0);
       const salaryTeacher = {
         teacherCode: teacher.teacherCode,
         nameTeacher: teacher.name,
