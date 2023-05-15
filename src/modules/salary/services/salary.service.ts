@@ -43,12 +43,14 @@ export class SalaryService {
           lession *
           (teacherCoefficient + subjectCoefficients + classCoefficient) *
           standardSalary;
-        classAndLession.push({
-          class: cur.name,
-          lession: cur?.Subject?.lession || '',
-          salary: salary,
-          studentNumber: cur.studentNumber,
-        });
+        if (cur.name && cur?.Subject?.lession && salary) {
+          classAndLession.push({
+            class: cur.name,
+            lession: cur?.Subject?.lession,
+            salary: salary,
+            studentNumber: cur.studentNumber,
+          });
+        }
         return acc + salary;
       }, 0);
       const salaryTeacher = {
