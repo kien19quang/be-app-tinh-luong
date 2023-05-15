@@ -47,6 +47,7 @@ export class SalaryService {
           class: cur.name,
           lession: cur?.Subject?.lession || '',
           salary: salary,
+          studentNumber: cur.studentNumber,
         });
         return acc + salary;
       }, 0);
