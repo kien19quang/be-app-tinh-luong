@@ -73,6 +73,9 @@ export class TeacherCoefficient {
   professor: number;
 }
 export class StandardSalaryDto {
+  @ApiProperty()
+  _id?: string;
+
   @IsNotEmpty()
   @ApiProperty({ default: 100000, type: Number })
   standardSalary: number;

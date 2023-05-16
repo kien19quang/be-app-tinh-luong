@@ -4,11 +4,11 @@ const StandardSalarySchema = new Schema(
   {
     standardSalary: { type: Number, required: true, default: 100000 },
     teacherCoefficient: {
-      graduate: Number,
-      master: Number,
-      docter: Number,
-      associateProfessor: Number,
-      professor: Number,
+      graduate: { type: Number, default: 1.3 },
+      master: { type: Number, default: 1.4 },
+      docter: { type: Number, default: 1.5 },
+      associateProfessor: { type: Number, default: 1.6 },
+      professor: { type: Number, default: 1.7 },
     },
   },
   { timestamps: true, collection: 'StandardSalary' },

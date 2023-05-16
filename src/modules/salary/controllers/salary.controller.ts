@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { SalaryService } from '../services/salary.service';
 import { ApiResponseSuccessDto } from 'src/shared/response/response.dto';
@@ -45,6 +45,16 @@ export class SalaryController {
   @ApiResponseSuccessDto(StandardSalaryDto)
   async createStandardSalary(@Body() data: StandardSalaryDto) {
     const response = await this.salaryService.createStandardSalary(data);
+    return {
+      success: true,
+      data: response,
+    };
+  }
+
+  @Put('updateStandardSalary')
+  @ApiResponseSuccessDto(StandardSalaryDto)
+  async updateStandardSalary(@Body() data: StandardSalaryDto) {
+    const response = await this.salaryService.updateStandardSalary(data);
     return {
       success: true,
       data: response,

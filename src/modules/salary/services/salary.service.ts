@@ -80,4 +80,12 @@ export class SalaryService {
     const createdStandardSalary = new this.standardSalaryModel(data);
     return createdStandardSalary.save();
   }
+
+  async updateStandardSalary(data: StandardSalaryDto) {
+    return await this.standardSalaryModel.findByIdAndUpdate(
+      { _id: data._id },
+      data,
+      { new: true },
+    );
+  }
 }
